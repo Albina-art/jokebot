@@ -10,7 +10,8 @@ test:
     - gem install dpl
     - go get github.com/constabulary/gb/...
     - go get -u github.com/golang/lint/golint
-    - golint ./src/...
-    - gb vendor restore
-    - gb test -v
+    - make
+    # - golint ./src/...
+    # - gb vendor restore
+    # - gb test -v
     - dpl --provider=heroku --app=startbot0 --api-key=$HEROKU_PRODUCTION_API_KEY --skip_cleanup
