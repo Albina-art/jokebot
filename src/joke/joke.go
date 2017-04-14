@@ -29,7 +29,7 @@ func GetJoke(url string) string {
 
 	err = json.Unmarshal(body, &joke)
 	if err != nil {
-		return "joke error"
+		return "Joke error"
 	}
 
 	return joke.Value.Joke

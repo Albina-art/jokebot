@@ -33,14 +33,8 @@ import (
 // установка зависимостей - gb vendor fetch gopkg.in/telegram-bot-api.v4
 // установка зависимостей из манифеста - gb vendor restore
 
-var buttons = [][]tgbotapi.KeyboardButton{
-	{
-		{Text: "Get Joke"},
-		{Text: "Get"},
-	},
-	{
-		{Text: "Gettt"},
-	},
+var buttons = []tgbotapi.KeyboardButton{
+	{Text: "Gettt"},
 }
 
 const JokeURL = "http://api.icndb.com/jokes/random?limitTo=[nerdy]"
@@ -83,8 +77,6 @@ func main() {
 		log.Println("received text: ", update.Message.Text)
 
 		switch update.Message.Text {
-		case "Cp":
-			message = tgbotapi.NewMessage(update.Message.Chat.ID, joke.GetJoke(JokeURL))
 		case "Get Joke":
 			// Если пользователь нажал на кнопку, то придёт сообщение "Get Joke"
 			message = tgbotapi.NewMessage(update.Message.Chat.ID, joke.GetJoke(JokeURL))
@@ -95,7 +87,7 @@ func main() {
 		// В ответном сообщении просим показать клавиатуру
 		// чтобы можно было просто показать кнопку, а не писать текст
 		// передаем слаис слайсов
-		message.ReplyMarkup = tgbotapi.NewReplyKeyboard(buttons[1])
+		message.ReplyMarkup = tgbotapi.NewReplyKeyboard(buttons)
 
 		bot.Send(message)
 	}

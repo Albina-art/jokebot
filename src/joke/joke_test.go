@@ -7,7 +7,8 @@ import (
 )
 
 func TestGetJoke(t *testing.T) {
-	resp := `{"type":"success","value":{"id":0,"joke":"the best joke"}}`
+
+	resp := `{"type":"success","value":{"id":0,"joke":"The best joke"}}`
 
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -15,15 +16,18 @@ func TestGetJoke(t *testing.T) {
 	}))
 
 	joke := GetJoke(ts.URL)
-	t.Log("joke", joke)
 
-	if joke != "the best joke" {
-		t.Error("joke is not the best")
+	t.Log("Joke: ", joke)
+
+	if joke != "The best joke" {
+		t.Error("Joke is not the best :(")
 	}
 
-	resp = "bad joke "
+	resp = "Bad joke"
+
 	joke = GetJoke(ts.URL)
-	if joke != "joke error" {
-		t.Error("joke must be bad")
+
+	if joke != "Joke error" {
+		t.Error("Joke must be bad")
 	}
 }
